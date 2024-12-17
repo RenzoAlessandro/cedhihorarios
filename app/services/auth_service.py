@@ -23,7 +23,7 @@ def login_user(email,password):
         print("EL usuario es: ",user)
         if not user or not user.check_password(password):
             return {"error":"Credenciales invalidas"},401
-        return {"menssage":"Inicio de sesion exitoso","user_id":user.user_id},200
+        return {"menssage":"Inicio de sesion exitoso", 'user': {"user_id":user.user_id, "categoria": user.categoria, "email": user.email}},200
     except Exception as e:
         return {"error": f"Error interno del servidor: {str(e)}"}, 500
 

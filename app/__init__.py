@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from app.config import Config
 from app.extensions import db
 from app.routes.auth_routes import auth_blueprint
@@ -7,6 +8,7 @@ from app.routes.cursos_routes import cursos_blueprint
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(Config)
     db.init_app(app)
     app.register_blueprint(auth_blueprint, url_prefix='/auth')  # Agregar prefijo opcional
